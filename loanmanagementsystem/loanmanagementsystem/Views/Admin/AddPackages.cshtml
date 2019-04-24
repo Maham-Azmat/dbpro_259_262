@@ -1,0 +1,85 @@
+﻿@model loanmanagementsystem.Models.LoanViewModels
+
+@{
+    ViewBag.Title = "AddPackages";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <section id="RegisterForm">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <div class="container">
+                        <!-- GROUP MEMEBER CONTENT HERE -->
+                        <div class="container">
+                            <!-- GROUP MEMEBER CONTENT HERE -->
+                            <style>
+                                .vl {
+                                    border-left: 6px solid green;
+                                    margin-bottom: -37px;
+                                    height: 30px;
+                                }
+                            </style>
+
+                            <div class="vl"></div>
+
+                            <p style="margin-top: 0px;font-size: 30px" class="navbar-text">Add Loan Packages</p>
+                            <img style="max-width:1000px; margin-top: 10px; margin-left: -10px; margin-bottom: 100px" alt="Brand" src="~/Pictures/textimage1.png">
+
+                        </div>
+                        <style>
+                            .vl {
+                                border-left: 6px solid green;
+                                margin-bottom: -40px;
+                                height: 35px;
+                            }
+                        </style>
+                        <!-- Adding specifications of new phone to add by admin -->
+                        <!-- label of IMEI NO. and text-box -->
+                        <div class="center" style="margin-left: 320px">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Details, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Details, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TermsAndConditions, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.TermsAndConditions, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.TermsAndConditions, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <!-- label of picture and picture-box -->
+                            <!-- label of price and text-box -->
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input style="background-color: #6B8E23; color:#FFFFFF;" type="submit" value="ADD" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

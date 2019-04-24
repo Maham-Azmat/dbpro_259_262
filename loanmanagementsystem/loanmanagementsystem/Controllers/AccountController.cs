@@ -86,7 +86,7 @@ namespace loanmanagementsystem.Controllers
             if (var == model.Email && pass == model.Password)
             {
                 string message = "Welcome to your account!";
-                return RedirectToAction("Index", "Admin", new { Message = message });
+                return RedirectToAction("Dashboard", "Admin", new { Message = message });
 
             }
 
@@ -183,14 +183,13 @@ namespace loanmanagementsystem.Controllers
                         // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                        Database_Connection.get_instance().connectionstring = "Data Source=HAIER-PC;Initial Catalog=DB64;Integrated Security=True";
-                        var con = Database_Connection.get_instance().Getconnection();
+                       
                        
                         string cmd2 = string.Format("INSERT INTO Employee(FirstName,LastName,Contact,Email,Rank,Salary) VALUES('{0}','{1}','{2}','{3}','{4}','{5}')", model.FirstName, model.LastName, model.Contact, model.Email, model.Rank,model.Salary);
                         int rows = Database_Connection.get_instance().Executequery(cmd2);
 
                        
-                        con.Close();
+                       // con.Close();
 
                         return RedirectToAction("Index", "Home");
                     }

@@ -10,14 +10,8 @@ namespace loanmanagementsystem.Controllers
     {
         public ActionResult Index()
         {
-            //Database_Connection.get_instance().connectionstring = "Data Source=HAIER-PC;Initial Catalog=DB64;Integrated Security=True";
-            //var con = Database_Connection.get_instance().Getconnection();
-            //con.Open();
-
-            //catch (Exception ex)
-            //{
-            //    throw(ex);
-            //}
+            Database_Connection.get_instance().connectionstring = "Data Source=HAIER-PC;Initial Catalog=DB64;Integrated Security=True";
+            var con = Database_Connection.get_instance().Getconnection();
 
             return View();
         }
