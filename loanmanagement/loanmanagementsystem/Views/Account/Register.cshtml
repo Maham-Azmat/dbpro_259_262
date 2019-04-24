@@ -1,0 +1,137 @@
+﻿@model loanmanagementsystem.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <section id="RegisterForm">
+
+
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <div class="container">
+                        <!-- GROUP MEMEBER CONTENT HERE -->
+                        <div class="container">
+                            <!-- GROUP MEMEBER CONTENT HERE -->
+                            <style>
+                                .vl {
+                                    border-left: 6px solid green;
+                                    margin-bottom: -37px;
+                                    height: 30px;
+                                }
+                            </style>
+
+                            <div class="vl"></div>
+
+                            <p style="margin-top: 0px;font-size: 30px" class="navbar-text">Registration  </p>
+                            <img style="max-width:1000px; margin-top: 10px; margin-left: -10px; margin-bottom: 100px" alt="Brand" src="~/Pictures/textimage1.png">
+
+                        </div>
+                        <style>
+                            .vl {
+                                border-left: 6px solid green;
+                                margin-bottom: -40px;
+                                height: 35px;
+                            }
+                        </style>
+                        <!-- Adding specifications of new phone to add by admin -->
+                        <!-- label of IMEI NO. and text-box -->
+                        <div class="center" style="margin-left: 320px">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @*<label for="inputType" class="col-sm-2 control-label" style="text-align: left">Name</label>*@
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(Model => Model.FirstName, "", new { @class = "text-validate" })
+                                </div>
+                            </div>
+
+                            <!-- label of brand name and text-box -->
+                            <!-- label of Model name and text-box -->
+                            <div class="form-group" style="text-align: left">
+                                @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @*<label for="inputType" class="col-sm-2 control-label" style="text-align: left">CNIC</label>*@
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(Model => Model.LastName, "", new { @class = "text-validate" })
+                                </div>
+                            </div>
+
+                            <!-- label of warranty and text-box -->
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @*<label for="inputType" class="col-sm-2 control-label" style="text-align: left">Email Id</label>*@
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="text-align: left">
+                                @Html.LabelFor(model => model.Contact, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @*<label for="inputType" class="col-sm-2 control-label" style="text-align: left">Phone Number</label>*@
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.Contact, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(Model => Model.Contact, "", new { @class = "text-validate" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Rank, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @*<label for="inputType" class="col-sm-2 control-label" style="text-align: left">Account Number</label>*@
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.Rank, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(Model => Model.Rank, "", new { @class = "text-validate" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Salary, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @*<label for="inputType" class="col-sm-2 control-label" style="text-align: left">Home Address</label>*@
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.Salary, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @*<label for="inputType" class="col-sm-2 control-label" style="text-align: left">Password</label>*@
+                                <div class="col-sm-4">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @*<label for="inputType" class="col-sm-2 control-label" style="text-align: left"> Confirm Password</label>*@
+                                <div class="col-sm-4">
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            
+                            <!-- label of picture and picture-box -->
+                            <!-- label of price and text-box -->
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input style="background-color: #6B8E23; color:#FFFFFF;" type="submit" value="Register" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

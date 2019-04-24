@@ -1,0 +1,94 @@
+﻿@using loanmanagementsystem.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="container">
+                    <!-- GROUP MEMEBER CONTENT HERE -->
+
+                    <div class="container">
+                        <!-- GROUP MEMEBER CONTENT HERE -->
+                        <style>
+                            .vl {
+                                border-left: 6px solid green;
+                                margin-bottom: -40px;
+                                height: 35px;
+                            }
+                        </style>
+
+                        <div class="vl"></div>
+
+                        <p style="margin-top: 0px;font-size: 30px" class="navbar-text">Login </p>
+                        <img style="max-width:1000px; margin-top: 10px; margin-left: -10px; margin-bottom: 100px" alt="Brand" src="~/Pictures/textimage1.png">
+
+                    </div>
+                </div>
+
+                <style>
+                    .vl {
+                        border-left: 6px solid green;
+                        margin-bottom: -40px;
+                        height: 35px;
+                    }
+                </style>
+                <div class="center" style="margin-left: 320px">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @*<label for="inputType" class="col-sm-3 control-label" style="text-align: left">Email Id</label>*@
+                        <div class="col-sm-5">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @*<label for="inputType" class="col-sm-3 control-label" style="text-align: left">Password</label>*@
+                        <div class="col-sm-5">
+
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <input type="submit" value="Log in" style="background-color: #6B8E23; margin-left: -10px; color:#ffffff" class="btn btn-default" />
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Register as a new user", "Register")
+                    </p>
+
+                    <!-- <div class ="container"> </div> -->
+                    <div class="container">
+                        <!-- <link rel="stylesheet" type="text/css" href="forget password.html" data-target="#pwdModal" data-toggle="modal" style="margin-top: 100px">Forget Password?</link> -->
+                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                    </div>
+
+                </div>
+                <div>
+
+                </div>
+            }
+        </section>
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
