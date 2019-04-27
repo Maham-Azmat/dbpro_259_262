@@ -1,0 +1,80 @@
+﻿
+@model ExploreTandT.Models.AdminViewModel
+
+@{
+    ViewBag.Title = "Loanlist";
+}
+
+<div id="Admin_Account">
+    <div class="container">
+        <h1 class="AdminAccount"></h1>
+        <div class="AdminAccount-form">
+
+
+            <h2 class="Column2" style="color:black">Admin</h2>
+            <!--<span class="glyphicon glyphicon-user" aria-hidden="true"></span>-->
+            <a href="~/Admin/dashboard/" type="button" class="btn btn-primary btn-responsive"> Back</a>
+            <p class="listText">List of Loans</p>
+
+            <div class="table-responsive" style="color: #000000">
+                <table class="table table-Simple">
+                    <thead class="Column1">
+                        <tr>
+
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listofloans[0].Id)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listofloans[0].Detail)</th>
+                            <th scope="col">  @Html.DisplayNameFor(model => model.listofloans[0].TermsAndConditions)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listofloans[0].Amount)</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.listofloans)
+                        {
+                            <tr>
+
+                                <th scope="row">
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </th>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Detail)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TermsAndConditions)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Amount)
+                                </td>
+
+
+                                <td>
+                                    @{
+                                        if (!User.Identity.IsAuthenticated)
+                                        {
+
+
+                                            <a class="btn btn-primary" type="button" href="~/Account/Login/">Loan Packages</a>
+                                        }
+                                        else
+                                        {
+                                            <input type="submit" value="Select" class="btn btn-primary btn-responsive" onclick="return confirm('Are you sure you want to send request for this loan?');" />
+                                        }
+                                    }
+
+                                    <a href="~/Account/Index/" class="btn btn-primary btn-responsive">Back</a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
