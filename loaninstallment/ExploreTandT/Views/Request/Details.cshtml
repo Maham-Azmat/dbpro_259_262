@@ -1,0 +1,104 @@
+﻿@model ExploreTandT.Models.UserAccountViewModel
+
+@{
+    ViewBag.Title = "Employeelist";
+}
+
+<div id="Admin_Account">
+    <div class="container">
+        <h1 class="AdminAccount"></h1>
+        <div class="AdminAccount-form">
+
+            <h2 class="Column2" style="color:black">Admin</h2>
+            <!--<span class="glyphicon glyphicon-user" aria-hidden="true"></span>-->
+            <a href="~/Admin/dashboard/" type="button" class="btn btn-primary btn-responsive"> Back</a>
+            <p class="listText" style="color:black">Employee Loan Request</p>
+
+            <div class="table-responsive" style="color:black">
+                <table class="table table-Simple" style="color:black">
+                    <thead class="Column1" style="color:black">
+                        <tr>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listofusers[0].Id)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listofusers[0].FirstName)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listofusers[0].LastName)</th>
+                            <th scope="col">  @Html.DisplayNameFor(model => model.listofusers[0].Email)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listofusers[0].Contact)</th>
+                            <th scope="col">  @Html.DisplayNameFor(model => model.listofusers[0].Rank)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listofusers[0].Salary)</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.listofusers)
+                        {
+                            <tr>
+                                <th scope="row">
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </th>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Contact)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Rank)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Salary)
+                                </td>
+
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+                <p class="listText" style="color:black">What you want to do!!</p>
+                <div class="col-xs-4">
+                             
+                    <div class="form-group">
+
+                        <select name="type" id="type" class="form-control">
+
+                            <option selected="">Accept</option>
+                            <option selected="">Reject</option>
+                            
+                            <option selected="">Perform Action</option>
+
+
+                        </select>
+
+                    </div>
+                
+                <div class="listText" style="color:black">
+                   
+                    @Html.LabelFor(model => model.Details, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.TextAreaFor(model => model.Details, 5, 50, new { htmlAttributes = new { @class = "form-control", style = "width: 100%; max-width: 50%" } })
+                        @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Message");
+        };
+    </script>
+}

@@ -1,0 +1,504 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB64Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <Property Name="LoanId" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RequiredDocuments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Document_Employee" FromRole="Document" ToRole="Employee" />
+    <NavigationProperty Name="Loan" Relationship="Self.FK_Document_Loan" FromRole="Document" ToRole="Loan" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Rank" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Salary" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Documents" Relationship="Self.FK_Document_Employee" FromRole="Employee" ToRole="Document" />
+    <NavigationProperty Name="EmployeeLoans" Relationship="Self.FK_EmployeeLoan_Employee" FromRole="Employee" ToRole="EmployeeLoan" />
+    <NavigationProperty Name="RepaymentSchedules" Relationship="Self.FK_RepaymentSchedule_Employee" FromRole="Employee" ToRole="RepaymentSchedule" />
+    <NavigationProperty Name="Requests" Relationship="Self.FK_Request_Employee" FromRole="Employee" ToRole="Request" />
+    <NavigationProperty Name="SalaryDeductions" Relationship="Self.FK_SalaryDeduction_Emloyee" FromRole="Employee" ToRole="SalaryDeduction" />
+  </EntityType>
+  <EntityType Name="EmployeeLoan">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <Property Name="LoanId" Type="Int32" Nullable="false" />
+    <Property Name="PolicyId" Type="Int32" Nullable="false" />
+    <Property Name="InstallementId" Type="Int32" Nullable="false" />
+    <Property Name="AssignDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_EmployeeLoan_Employee" FromRole="EmployeeLoan" ToRole="Employee" />
+    <NavigationProperty Name="Installement" Relationship="Self.FK_EmployeeLoan_Installement" FromRole="EmployeeLoan" ToRole="Installement" />
+    <NavigationProperty Name="Loan" Relationship="Self.FK_EmployeeLoan_Loan" FromRole="EmployeeLoan" ToRole="Loan" />
+    <NavigationProperty Name="PolicyAndRule" Relationship="Self.FK_EmployeeLoan_PolicyAndRules" FromRole="EmployeeLoan" ToRole="PolicyAndRules" />
+  </EntityType>
+  <EntityType Name="Installement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="LoanId" Type="Int32" Nullable="false" />
+    <Property Name="InstallementPlan" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EmployeeLoans" Relationship="Self.FK_EmployeeLoan_Installement" FromRole="Installement" ToRole="EmployeeLoan" />
+    <NavigationProperty Name="Loan" Relationship="Self.FK_Installement_Loan" FromRole="Installement" ToRole="Loan" />
+    <NavigationProperty Name="RepaymentSchedules" Relationship="Self.FK_RepaymentSchedule_Installement" FromRole="Installement" ToRole="RepaymentSchedule" />
+    <NavigationProperty Name="SalaryDeductions" Relationship="Self.FK_SalaryDeduction_Installement" FromRole="Installement" ToRole="SalaryDeduction" />
+  </EntityType>
+  <EntityType Name="Loan">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TermsAndConditions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Documents" Relationship="Self.FK_Document_Loan" FromRole="Loan" ToRole="Document" />
+    <NavigationProperty Name="EmployeeLoans" Relationship="Self.FK_EmployeeLoan_Loan" FromRole="Loan" ToRole="EmployeeLoan" />
+    <NavigationProperty Name="Installements" Relationship="Self.FK_Installement_Loan" FromRole="Loan" ToRole="Installement" />
+    <NavigationProperty Name="PolicyAndRules" Relationship="Self.FK_PolicyAndRules_Loan" FromRole="Loan" ToRole="PolicyAndRules" />
+    <NavigationProperty Name="Requests" Relationship="Self.FK_Request_Loan" FromRole="Loan" ToRole="Request" />
+    <NavigationProperty Name="SalaryDeductions" Relationship="Self.FK_SalaryDeduction_Loan" FromRole="Loan" ToRole="SalaryDeduction" />
+  </EntityType>
+  <EntityType Name="Lookup">
+    <Key>
+      <PropertyRef Name="LookupId" />
+    </Key>
+    <Property Name="LookupId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PolicyAndRule">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoanId" Type="Int32" Nullable="false" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Rank" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Salary" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EmployeeLoans" Relationship="Self.FK_EmployeeLoan_PolicyAndRules" FromRole="PolicyAndRules" ToRole="EmployeeLoan" />
+    <NavigationProperty Name="Loan" Relationship="Self.FK_PolicyAndRules_Loan" FromRole="PolicyAndRules" ToRole="Loan" />
+  </EntityType>
+  <EntityType Name="RepaymentSchedule">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <Property Name="InstallementId" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_RepaymentSchedule_Employee" FromRole="RepaymentSchedule" ToRole="Employee" />
+    <NavigationProperty Name="Installement" Relationship="Self.FK_RepaymentSchedule_Installement" FromRole="RepaymentSchedule" ToRole="Installement" />
+  </EntityType>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <Property Name="LoanId" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Request_Employee" FromRole="Request" ToRole="Employee" />
+    <NavigationProperty Name="Loan" Relationship="Self.FK_Request_Loan" FromRole="Request" ToRole="Loan" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SalaryDeduction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <Property Name="LoanId" Type="Int32" Nullable="false" />
+    <Property Name="InstallementId" Type="Int32" Nullable="false" />
+    <Property Name="SalaryAfterDeduction" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_SalaryDeduction_Emloyee" FromRole="SalaryDeduction" ToRole="Employee" />
+    <NavigationProperty Name="Installement" Relationship="Self.FK_SalaryDeduction_Installement" FromRole="SalaryDeduction" ToRole="Installement" />
+    <NavigationProperty Name="Loan" Relationship="Self.FK_SalaryDeduction_Loan" FromRole="SalaryDeduction" ToRole="Loan" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Document_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Document_Loan">
+    <End Role="Loan" Type="Self.Loan" Multiplicity="1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Loan">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="LoanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeLoan_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="EmployeeLoan" Type="Self.EmployeeLoan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeLoan">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RepaymentSchedule_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="RepaymentSchedule" Type="Self.RepaymentSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepaymentSchedule">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Request_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalaryDeduction_Emloyee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="SalaryDeduction" Type="Self.SalaryDeduction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalaryDeduction">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeLoan_Installement">
+    <End Role="Installement" Type="Self.Installement" Multiplicity="1" />
+    <End Role="EmployeeLoan" Type="Self.EmployeeLoan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Installement">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeLoan">
+        <PropertyRef Name="InstallementId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeLoan_Loan">
+    <End Role="Loan" Type="Self.Loan" Multiplicity="1" />
+    <End Role="EmployeeLoan" Type="Self.EmployeeLoan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Loan">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeLoan">
+        <PropertyRef Name="LoanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeLoan_PolicyAndRules">
+    <End Role="PolicyAndRules" Type="Self.PolicyAndRule" Multiplicity="1" />
+    <End Role="EmployeeLoan" Type="Self.EmployeeLoan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PolicyAndRules">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeLoan">
+        <PropertyRef Name="PolicyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Installement_Loan">
+    <End Role="Loan" Type="Self.Loan" Multiplicity="1" />
+    <End Role="Installement" Type="Self.Installement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Loan">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Installement">
+        <PropertyRef Name="LoanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RepaymentSchedule_Installement">
+    <End Role="Installement" Type="Self.Installement" Multiplicity="1" />
+    <End Role="RepaymentSchedule" Type="Self.RepaymentSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Installement">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepaymentSchedule">
+        <PropertyRef Name="InstallementId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalaryDeduction_Installement">
+    <End Role="Installement" Type="Self.Installement" Multiplicity="1" />
+    <End Role="SalaryDeduction" Type="Self.SalaryDeduction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Installement">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalaryDeduction">
+        <PropertyRef Name="InstallementId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PolicyAndRules_Loan">
+    <End Role="Loan" Type="Self.Loan" Multiplicity="1" />
+    <End Role="PolicyAndRules" Type="Self.PolicyAndRule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Loan">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PolicyAndRules">
+        <PropertyRef Name="LoanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Request_Loan">
+    <End Role="Loan" Type="Self.Loan" Multiplicity="1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Loan">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="LoanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalaryDeduction_Loan">
+    <End Role="Loan" Type="Self.Loan" Multiplicity="1" />
+    <End Role="SalaryDeduction" Type="Self.SalaryDeduction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Loan">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalaryDeduction">
+        <PropertyRef Name="LoanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="DB64Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="Documents" EntityType="Self.Document" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="EmployeeLoans" EntityType="Self.EmployeeLoan" />
+    <EntitySet Name="Installements" EntityType="Self.Installement" />
+    <EntitySet Name="Loans" EntityType="Self.Loan" />
+    <EntitySet Name="Lookups" EntityType="Self.Lookup" />
+    <EntitySet Name="PolicyAndRules" EntityType="Self.PolicyAndRule" />
+    <EntitySet Name="RepaymentSchedules" EntityType="Self.RepaymentSchedule" />
+    <EntitySet Name="Requests" EntityType="Self.Request" />
+    <EntitySet Name="SalaryDeductions" EntityType="Self.SalaryDeduction" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_Employee" Association="Self.FK_Document_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Document" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_Loan" Association="Self.FK_Document_Loan">
+      <End Role="Loan" EntitySet="Loans" />
+      <End Role="Document" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeLoan_Employee" Association="Self.FK_EmployeeLoan_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="EmployeeLoan" EntitySet="EmployeeLoans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RepaymentSchedule_Employee" Association="Self.FK_RepaymentSchedule_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="RepaymentSchedule" EntitySet="RepaymentSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Request_Employee" Association="Self.FK_Request_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalaryDeduction_Emloyee" Association="Self.FK_SalaryDeduction_Emloyee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="SalaryDeduction" EntitySet="SalaryDeductions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeLoan_Installement" Association="Self.FK_EmployeeLoan_Installement">
+      <End Role="Installement" EntitySet="Installements" />
+      <End Role="EmployeeLoan" EntitySet="EmployeeLoans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeLoan_Loan" Association="Self.FK_EmployeeLoan_Loan">
+      <End Role="Loan" EntitySet="Loans" />
+      <End Role="EmployeeLoan" EntitySet="EmployeeLoans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeLoan_PolicyAndRules" Association="Self.FK_EmployeeLoan_PolicyAndRules">
+      <End Role="PolicyAndRules" EntitySet="PolicyAndRules" />
+      <End Role="EmployeeLoan" EntitySet="EmployeeLoans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Installement_Loan" Association="Self.FK_Installement_Loan">
+      <End Role="Loan" EntitySet="Loans" />
+      <End Role="Installement" EntitySet="Installements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RepaymentSchedule_Installement" Association="Self.FK_RepaymentSchedule_Installement">
+      <End Role="Installement" EntitySet="Installements" />
+      <End Role="RepaymentSchedule" EntitySet="RepaymentSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalaryDeduction_Installement" Association="Self.FK_SalaryDeduction_Installement">
+      <End Role="Installement" EntitySet="Installements" />
+      <End Role="SalaryDeduction" EntitySet="SalaryDeductions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PolicyAndRules_Loan" Association="Self.FK_PolicyAndRules_Loan">
+      <End Role="Loan" EntitySet="Loans" />
+      <End Role="PolicyAndRules" EntitySet="PolicyAndRules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Request_Loan" Association="Self.FK_Request_Loan">
+      <End Role="Loan" EntitySet="Loans" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalaryDeduction_Loan" Association="Self.FK_SalaryDeduction_Loan">
+      <End Role="Loan" EntitySet="Loans" />
+      <End Role="SalaryDeduction" EntitySet="SalaryDeductions" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
