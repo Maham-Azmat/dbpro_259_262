@@ -1,0 +1,74 @@
+﻿@model ExploreTandT.Models.AdminViewModel
+
+@{
+    ViewBag.Title = "loanrequest";
+}
+
+<div id="Admin_Account">
+    <div class="container">
+        <h1 class="AdminAccount"></h1>
+        <div class="AdminAccount-form">
+
+
+            <h2 class="Column2" style="color:black">Admin</h2>
+            <!--<span class="glyphicon glyphicon-user" aria-hidden="true"></span>-->
+            <a href="~/Admin/dashboard/" type="button" class="btn btn-primary btn-responsive"> Back</a>
+            <p class="listText" style="color:black">List of Loans Request</p>
+
+            <div class="table-responsive" style="color: #000000">
+                <table class="table table-Simple" style="color:black">
+                    <thead class="Column1" style="color:black">
+                        <tr>
+
+                            <th scope="col"> @Html.DisplayNameFor(model => model.requests[0].Id)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.requests[0].EmployeeId)</th>
+                            <th scope="col">  @Html.DisplayNameFor(model => model.requests[0].LoanId)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.requests[0].Status)</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody style="color:black">
+                        @foreach (var item in Model.requests)
+                        {
+                        <tr>
+
+                            <th scope="row">
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmployeeId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LoanId)
+                            </td>
+                            @if (item.Status == 5)
+                            {
+                                <td style="color:black">
+                                    <p>Pending</p>
+                                </td>
+
+                            }
+                            else if (item.Status == 4)
+                            {
+
+                            }
+                            <td>
+                                @Html.ActionLink("Details", "Details", "Request", new { id = item.Id }, new { @class = "btn btn-primary btn-responsive" })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Delete", "Delete", "Request", new { id = item.Id }, new { @class = "btn btn-primary btn-responsive" })
+                            </td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
