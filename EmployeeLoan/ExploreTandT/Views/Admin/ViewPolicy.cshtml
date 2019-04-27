@@ -1,0 +1,66 @@
+﻿@model ExploreTandT.Models.AdminViewModel
+
+@{
+    ViewBag.Title = "ViewPolicy";
+}
+<div id="Admin_Account">
+    <div class="container">
+        <h1 class="AdminAccount"></h1>
+        <div class="AdminAccount-form">
+
+            <h2 class="Column2" style="color:black">Admin</h2>
+            <!--<span class="glyphicon glyphicon-user" aria-hidden="true"></span>-->
+            <a href="~/Admin/Loanlist/" type="button" class="btn btn-primary btn-responsive"> Back</a>
+            <p class="listText" style="color:black">List of Policies</p>
+
+            <div class="table-responsive" style="color:black">
+                <table class="table table-Simple" style="color:black">
+                    <thead class="Column1" style="color:black">
+                        <tr>
+
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listOfPolicies[0].Id)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listOfPolicies[0].LoanId)</th>
+                            <th scope="col">  @Html.DisplayNameFor(model => model.listOfPolicies[0].Detail)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listOfPolicies[0].Rank)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listOfPolicies[0].Salary)</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.listOfPolicies)
+                        {
+                            <tr>
+
+                                <th scope="row">
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </th>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LoanId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Detail)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Rank)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Salary)
+                                </td>
+
+
+                                <td>
+                                    @*Html.ActionLink("Delete", "DeletePolicy", "Admin", new { id = item.Id }, new { @class = "btn btn-primary btn-responsive" })*@
+                                    <a href="~/Admin/DeletePolicy/@item.Id" value="Delete" class="btn btn-primary btn-responsive" type="button" onclick="return confirm('Are you sure you want to delete this Policy?');">Delete</a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
