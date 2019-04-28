@@ -1,0 +1,67 @@
+﻿@model ExploreTandT.Models.UserAccountViewModel
+
+@{
+    ViewBag.Title = "SalaryDeduction";
+}
+
+<div id="Admin_Account">
+    <div class="container">
+        <h1 class="AdminAccount" style="color:black">Employee</h1>
+        <div class="AdminAccount-form">
+
+
+            <!--<span class="glyphicon glyphicon-user" aria-hidden="true"></span>-->
+            <a href="~/Account/Index/" type="button" class="btn btn-primary btn-responsive"> Back</a>
+            <p class="listText" style="color:black">List of Salary Deductions</p>
+
+            <div class="table-responsive" style="color: #000000">
+                <table class="table table-Simple">
+                    <thead class="Column1" style="color:black">
+                        <tr>
+
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listOfSalaryDeduction[0].Id)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listOfSalaryDeduction[0].LoanId)</th>
+                            <th scope="col">  @Html.DisplayNameFor(model => model.listOfSalaryDeduction[0].InstallementId)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listOfSalaryDeduction[0].SalaryAfterDeduction)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listOfSalaryDeduction[0].Date)</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.listOfSalaryDeduction)
+                        {
+                            <tr>
+
+                                <th scope="row">
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </th>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LoanId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.InstallementId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SalaryAfterDeduction)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </td>
+                              
+
+
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
