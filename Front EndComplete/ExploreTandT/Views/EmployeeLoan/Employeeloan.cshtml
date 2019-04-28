@@ -1,0 +1,91 @@
+﻿@model ExploreTandT.Models.UserAccountViewModel
+
+@{
+    ViewBag.Title = "Loanlist";
+}
+
+<div id="Admin_Account">
+    <div class="container">
+        <h1 class="AdminAccount"></h1>
+        <div class="AdminAccount-form">
+
+
+            <h2 class="Column2" style="color:black">Admin</h2>
+            <!--<span class="glyphicon glyphicon-user" aria-hidden="true"></span>-->
+            <a href="~/Admin/dashboard/" type="button" class="btn btn-primary btn-responsive"> Back</a>
+            <p class="listText" style="color:black">List of Loans</p>
+
+            <div class="table-responsive" style="color: #000000">
+                <table class="table table-Simple" style="color:black">
+                    <thead class="Column1" style="color:black">
+                        <tr>
+
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listOfEmployeeLoan[0].Id)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listOfEmployeeLoan[0].EmployeeId)</th>
+                            <th scope="col">  @Html.DisplayNameFor(model => model.listOfEmployeeLoan[0].LoanId)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listOfEmployeeLoan[0].InstallementId)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listOfEmployeeLoan[0].AssignDate)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listOfEmployeeLoan[0].Status)</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.listOfEmployeeLoan)
+                        {
+                        <tr>
+
+                            <th scope="row">
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmployeeId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LoanId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InstallementId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AssignDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+
+                            <td>
+                                @*Html.ActionLink("Delete", "DeleteLoan", "Admin", new { id = item.Id }, new { @class = "btn btn-primary btn-responsive" })*@
+                                <a href="~/Admin/DeleteLoan/@item.Id" value="Delete" class="btn btn-primary btn-responsive" type="button" onclick="return confirm('Are you sure you want to delete this loan?');">Delete</a>
+                            </td>
+                            <td>
+
+                                @*@Html.ActionLink("Add Policy", "AddPolicy", "Admin", new { id = item.Id }, new { @class = "btn btn-primary btn-responsive" })*@
+                                <a href="~/Admin/AddPolicy/@item.Id" value="Add Policy" class="btn btn-primary btn-responsive" type="button" onclick="return confirm('Are you sure you want to Add Policy for this loan?');">Add Policy</a>
+                            </td>
+                            <td>
+
+                                @*@Html.ActionLink("View Policy", "ViewPolicy", "Admin", new { id = item.Id }, new { @class = "btn btn-primary btn-responsive" })*@
+                                <a href="~/Admin/ViewPolicy/@item.Id" value="View Policy" class="btn btn-primary btn-responsive" type="button">View Policy</a>
+                            </td>
+                            <td>
+                                @*@Html.ActionLink("Add Installments", "AddInstallments", "Admin", new { id = item.Id }, new { @class = "btn btn-primary btn-responsive" })*@
+                                <a href="~/Admin/AddInstallments/@item.Id" value="Add Installments" class="btn btn-primary btn-responsive" type="button" onclick="return confirm('Are you sure you want to Add Installments for this loan?');">Add Installlments</a>
+                            </td>
+                            <td>
+                                @*@Html.ActionLink("View Installments", "ViewInstallment", "Admin", new { id = item.Id }, new { @class = "btn btn-primary btn-responsive" })*@
+                                <a href="~/Admin/ViewInstallment/@item.Id" value="View Installments" class="btn btn-primary btn-responsive" type="button">View Installlments</a>
+                            </td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
