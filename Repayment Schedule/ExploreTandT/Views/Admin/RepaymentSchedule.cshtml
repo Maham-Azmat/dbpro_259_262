@@ -1,0 +1,82 @@
+﻿@model ExploreTandT.Models.AdminViewModel
+
+@{
+    ViewBag.Title = "EmployeeLoan";
+}
+
+<div id="Admin_Account">
+    <div class="container">
+        <h1 class="AdminAccount" style="color:black">Admin</h1>
+        <div class="AdminAccount-form">
+
+
+            <!--<span class="glyphicon glyphicon-user" aria-hidden="true"></span>-->
+            <a href="~/Admin/dashboard/" type="button" class="btn btn-primary btn-responsive"> Back</a>
+            <p class="listText" style="color:black">List of Employee's Repayment Schedule</p>
+
+            <div class="table-responsive" style="color: #000000">
+                <table class="table table-Simple">
+                    <thead class="Column1" style="color:black">
+                        <tr>
+
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listOfRepaymentSchedule[0].Id)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listOfRepaymentSchedule[0].EmployeeId)</th>
+                            <th scope="col">  @Html.DisplayNameFor(model => model.listOfRepaymentSchedule[0].InstallementId)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listOfRepaymentSchedule[0].Amount)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listOfRepaymentSchedule[0].Date)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listOfRepaymentSchedule[0].Status)</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.listOfRepaymentSchedule)
+                        {
+                        <tr>
+
+                            <th scope="row">
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmployeeId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InstallementId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Amount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            @if (item.Status == 6)
+                            {
+                                <td style="color:black">
+                                    <p>Paid</p>
+                                </td>
+
+                            }
+                            else
+                            {
+                                <td style="color:black">
+                                    <p>Due</p>
+                                </td>
+                            }
+
+                            <td>
+                                @Html.ActionLink("Deduct Salary", "SalaryDeduct", "Admin", new { id = item.Id }, new { @class = "btn btn-primary btn-responsive" })
+                            </td>
+
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+

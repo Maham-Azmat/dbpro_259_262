@@ -1,0 +1,34 @@
+﻿@model ExploreTandT.Models.AdminViewModel
+@{
+    ViewBag.Title = "AddPackages";
+}
+
+@using (Html.BeginForm("Verifydocument", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div id="Admin_Account">
+        <div class="container">
+            <h1 class="AdminAccount">Admin</h1>
+            <div class="AdminAccount-form">
+                <h2 class="Column2" style="color:black">Documents Review</h2>
+                <!--<span class="glyphicon glyphicon-user" aria-hidden="true"></span>-->
+                <a href="~/Admin/Listofdocuments/" type="button" class="btn btn-primary btn-responsive"> Back</a>
+                @foreach (var item in Model.listOfDocumentstobeverified)
+                {
+                    <div class="form-group">
+                        @Html.DisplayFor(model => item.Title)
+                    </div>
+                    <div class="container-fluid">
+                        <img style="max-width:400px; margin-top: 10px; margin-left: 100px;max-height: 500px; margin-bottom: 100px;" src="@Url.Content(item.RequiredDocuments)" />
+                        @*<img style="max-width:400px; margin-top: 10px; margin-left: 100px;max-height: 500px; margin-bottom: 100px;" alt="Nokia" src="~/images/5.jpg">*@
+                    </div>
+
+                }
+                @Html.ActionLink("Verify", "Verify", "Admin", new { eid = Model.listOfDocumentstobeverified[0].EmployeeId, lid = Model.listOfDocumentstobeverified[0].LoanId }, new { @class = "btn btn-primary btn-responsive", method = "Post" })
+                @Html.ActionLink("Disapprove", "NotVerify", "Admin", new { eid = Model.listOfDocumentstobeverified[0].EmployeeId, lid = Model.listOfDocumentstobeverified[0].LoanId }, new {  @class = "btn btn-primary btn-responsive", method = "Post" })
+                
+            </div>
+        </div>
+    </div>
+}
+

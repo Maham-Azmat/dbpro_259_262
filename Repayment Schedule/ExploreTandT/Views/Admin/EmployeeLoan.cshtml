@@ -1,0 +1,83 @@
+﻿@model ExploreTandT.Models.AdminViewModel
+
+@{
+    ViewBag.Title = "EmployeeLoan";
+}
+
+<div id="Admin_Account">
+    <div class="container">
+        <h1 class="AdminAccount" style="color:black">Admin</h1>
+        <div class="AdminAccount-form">
+
+
+            <!--<span class="glyphicon glyphicon-user" aria-hidden="true"></span>-->
+            <a href="~/Admin/dashboard/" type="button" class="btn btn-primary btn-responsive"> Back</a>
+            <p class="listText" style="color:black">List of Employee Loans</p>
+
+            <div class="table-responsive" style="color: #000000">
+                <table class="table table-Simple">
+                    <thead class="Column1" style="color:black">
+                        <tr>
+
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listofEmployeeLoan[0].Id)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listofEmployeeLoan[0].EmployeeId)</th>
+                            <th scope="col">  @Html.DisplayNameFor(model => model.listofEmployeeLoan[0].LoanId)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listofEmployeeLoan[0].InstallementId)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listofEmployeeLoan[0].Status)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.listofEmployeeLoan[0].AssignDate)</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.listofEmployeeLoan)
+                        {
+                        <tr>
+
+                            <th scope="row">
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmployeeId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LoanId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InstallementId)
+                            </td>
+                            @if (item.Status == 1)
+                            {
+                                <td style="color:black">
+                                    <p>Approved</p>
+                                </td>
+
+                            }
+                            else
+                            {
+                                <td style="color:black">
+                                    <p>DISApproved</p>
+                                </td>
+                            }
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AssignDate)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Generate Repayment Schedule", "AddRepaymentSchedule", "Admin", new { id = item.Id, eid = item.EmployeeId, insid = item.InstallementId }, new { @class = "btn btn-primary btn-responsive" })
+                            </td>
+
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
