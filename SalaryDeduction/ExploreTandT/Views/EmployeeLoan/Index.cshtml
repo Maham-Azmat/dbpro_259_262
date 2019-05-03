@@ -1,0 +1,49 @@
+﻿@model ExploreTandT.Models.LoanViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="Admin_Account">
+    <div class="container">
+        <h1 class="AdminAccount"></h1>
+        <div class="AdminAccount-form">
+
+            <h2 class="Column2" style="color:black">Loan</h2>
+            <!--<span class="glyphicon glyphicon-user" aria-hidden="true"></span>-->
+            <a href="~/Account/request/" type="button" class="btn btn-primary btn-responsive"> Back</a>
+            <p class="listText" style="color:black">Terms And Conditions</p>
+
+            <div class="col-xs-4">
+
+                <div class="listText" style="color:black">
+                    @foreach (var item in Model.listofloans)
+                    {
+                        @Html.LabelFor(model => model.TermsAndConditions, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.TextAreaFor(model => model.TermsAndConditions, 5, 50, new { htmlAttributes = new { @class = "form-control", style = "width: 100%; max-width: 50%" } })
+                            @Html.ValidationMessageFor(model => model.TermsAndConditions, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div>
+                            <a href="~/EmployeeLoan/Installment/@item.Id" value="Accept" class="btn btn-primary btn-responsive" type="button">Accept</a>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Message");
+        };
+    </script>
+}
+
