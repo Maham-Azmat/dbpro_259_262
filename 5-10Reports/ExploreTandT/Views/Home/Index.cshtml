@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<!-- Video Start -->
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <header>
+
+        <img src="~/images/home.jpg" style="width:1400px;height:500px" class="col-12">
+
+
+    </header>
+    <!-- Video End -->
+    <!-- Jumbotron Black Start -->
+    <div class="jumbotron jumbotron-primary">
+        <div class="container">
+            <div class="col-lg-9">
+                <h2>Want a LOAN!!! Quick,Professional,Good Service.</h2>
+                <p class="lead">BRILLIANT COMPANY AND NEVER BOTHER YOU. THE RATES YYOU PAY BACK ARE REASONABLE TOO!</p>
+                <div class="input-group">
+                    <span class="input-group-btn">
+
+
+                        <a class="btn btn-primary" type="button" href="~/Admin/employeeloanlist/">Loan Packages</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jumbotron End -->
+
+    <div id="listText" style="color:black">
+        <div class="container">
+            <div class="abouttext"style="color:black">
+                <h1 style="margin-bottom: 50px;font-size:40px;color:black">Employee Loan Management System</h1>
+               
+                <p style="font-size:30px">If you are a person who want a Loan than you have come to the right place!</p>
+                <p style="font-size:30px">This module enables companies which provides loans to define and manage loans. </p>
+                <p style="font-size:30px">Employees can request loans, which are then reviewed and approved. For the approved loans, repayment schedule for the entire loan cycle can be generated and automatic deduction from salary can also be set up..!</p>
+             
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+
+
+}

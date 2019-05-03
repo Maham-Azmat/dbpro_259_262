@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=HAIER-PC;Initial Catalog=Explore;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Khadija\ Zahoor\\Desktop\\merafinal\\Explore-VS-Files\\ExploreTandT\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="ExploreEntities-Web.config Connection String" description="ExploreEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/ExploreEntities.csdl|res://*/ExploreEntities.ssdl|res://*/ExploreEntities.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=HAIER-PC;initial catalog=Explore;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Khadija\ Zahoor\\Desktop\\merafinal\\Explore-VS-Files\\ExploreTandT\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ExploreEntities']/@connectionString" />
+  </parameter>
+</parameters>
