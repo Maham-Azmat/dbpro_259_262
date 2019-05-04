@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "dashboard";
+}
+<div class="abc">
+    <div class="wrapper">
+        <aside class="main_sidebar">
+
+            <ul>
+                <li style="color: white"><h1 style="font-family: 'Raleway', sans-serif;">Admin</h1></li>
+                <li><i class="glyphicon glyphicon-user"></i><a href="/Admin/AddPackages">Add Packages</a></li>
+                <li><i class="glyphicon glyphicon-user"></i><a href="/Admin/loanrequest">Loan Requests</a></li>
+                <li><i class="glyphicon glyphicon-user"></i><a href="/Admin/Listofdocuments">Verify Documents</a></li>
+                <li><i class="glyphicon glyphicon-user"></i><a href="/Admin/RepaymentSchedule">Repayment Schedule</a></li>
+                <li><i class="glyphicon glyphicon-user"></i><a href="/Admin/SalaryDeductionList">Salary Deduction List</a></li>
+                <li><i class="glyphicon glyphicon-user"></i><a href="/Admin/Export10">Paid Loan Installments</a></li>
+                <li><i class="glyphicon glyphicon-user"></i><a href="/Admin/Payloan">Pay Loan</a></li>
+            </ul>
+        </aside>
+        <div class="mian">
+            <h1 style=" color: white;"> Prakash </h1>
+        </div>
+    </div>
+    <div class="text-right">
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <a href="javascript:document.getElementById('logoutForm').submit()" type="button" class="btn btn-primary btn-responsive">LogOff </a>
+        }
+
+    </div>
+    <div class="text-right">
+    <a href="~/Admin/Export9/" type="button" class="btn btn-primary btn-responsive"> GET PDF of Employee Loan</a>
+        </div>
+    <div class="abc">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="dash-box dash-box-color-1">
+                        <div class="dash-box-icon">
+                            <i class="glyphicon glyphicon-cloud"></i>
+                        </div>
+                        <div class="dash-box-body">
+                            <span class="dash-box-count">@ViewBag.places_count</span>
+                            <span class="dash-box-title">Employee Loan List</span>
+                        </div>
+
+                        <div class="dash-box-action">
+                            <button onclick="window.location.href='/Admin/EmployeeLoan'"> See List</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="dash-box dash-box-color-2">
+                        <div class="dash-box-icon">
+                            <i class="glyphicon glyphicon-download"></i>
+                        </div>
+                        <div class="dash-box-body">
+                            <span class="dash-box-count">@ViewBag.tourguide_count</span>
+                            <span class="dash-box-title">List of Employees</span>
+                        </div>
+
+                        <div class="dash-box-action">
+                            <button onclick="window.location.href='/Admin/Employeelist/'">See List</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="dash-box dash-box-color-3">
+                        <div class="dash-box-icon">
+                            <i class="glyphicon glyphicon-heart"></i>
+                        </div>
+                        <div class="dash-box-body">
+                            <span class="dash-box-count">@ViewBag.tourists_count</span>
+                            <span class="dash-box-title">List of Loans</span>
+                        </div>
+
+                        <div class="dash-box-action">
+                            <button onclick="window.location.href='/Admin/Loanlist/'">See List</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

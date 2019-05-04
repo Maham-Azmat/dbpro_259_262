@@ -1,0 +1,97 @@
+﻿@model ExploreTandT.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+}
+<style>
+    .text-validate {
+        color: white;
+    }
+
+</style> 
+<div id="RegisterForm">
+    <div class="container">
+        <h1 class="form-heading"></h1>
+        <div class="Register-form">
+            <div class="main-div">
+                <div class="panel" style="background-color: transparent;">
+                    <h2 style="color:black">Sign Up</h2>
+                    <p style="color:black">Sign Up to get Loans</p>
+                </div>
+                
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+
+
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-validate" })
+                    <div class="form-group required control-label ">
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "*FirstName" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-validate" })
+                    </div>
+
+                    <div class="form-group required control-label ">
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "*LastName" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-validate" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "*Email Address" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-validate" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "*Password" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-validate" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "*Confirm Password" } })
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-validate" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control", placeholder = "*Contact" } })
+                        @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-validate" })
+
+                    </div>
+
+                        <div class="form-group">
+
+                            @{
+                                List<SelectListItem> Typedl = new List<SelectListItem>();
+                                Typedl.Add(new SelectListItem { Text = "CEO", Value = "CEO" });
+                                Typedl.Add(new SelectListItem { Text = "Senior Executive", Value = "Senior Executive" });
+                                Typedl.Add(new SelectListItem { Text = "Executive", Value = "Executive" });
+                                Typedl.Add(new SelectListItem { Text = "Senior Director", Value = "Senior Director" });
+                                Typedl.Add(new SelectListItem { Text = "Director", Value = "Director" });
+                                Typedl.Add(new SelectListItem { Text = "Senior Manager", Value = "Senior Manager" });
+                                Typedl.Add(new SelectListItem { Text = "Manager", Value = "Manager" });
+                                Typedl.Add(new SelectListItem { Text = "Senior Staff", Value = "Senior Staff" });
+                                Typedl.Add(new SelectListItem { Text = "Intermediate Staff", Value = "Intermediate Staff" });
+                                Typedl.Add(new SelectListItem { Text = "Associate Staff", Value = "Associate Staff" });
+
+                            }
+
+                            @Html.DropDownList("Rank", Typedl, "Select your RANK", new { @class = "form-control" });
+                        </div>
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control", placeholder = "*Salary" } })
+                            @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-validate" })
+                        </div>
+
+
+                        <input type="submit" value="Register" class="btn btn-primary btn-responsive" onclick="return confirm('Are you sure you want to Register?');" />
+                    </div>
+
+                    }
+                </div>
+                </div>
+            </div>
+        </div>
+    
+
